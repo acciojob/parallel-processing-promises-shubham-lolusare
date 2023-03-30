@@ -1,14 +1,4 @@
-let array = [
-  {
-    url: "https://cdn.shopify.com/s/files/1/0592/6141/9682/files/09.04.2022_web.jpg?v=1649517840",
-  },
-  {
-    url: "https://cdn.shopify.com/s/files/1/0592/6141/9682/files/20.04.2021_web.jpg?v=1632139259",
-  },
-  {
-    url: "https://cdn.shopify.com/s/files/1/0592/6141/9682/files/01.04.2020_webb.jpg?v=1632139259",
-  },
-];
+
 
 let opt = document.querySelector("#output");
 let btn = document.querySelector("#download-images-button");
@@ -18,11 +8,13 @@ btn.addEventListener("click", () => {
 });
 
 async function showImage(array) {
-  let p1 = fetch(array[0].url);
-  let p2 = fetch(array[1].url);
-  let p3 = fetch(array[2].url);
+  
 
-  let arr = [p1, p2, p3];
+  let arr = [];
+
+	for(let x in array){
+		arr.push(await fetch(array[x].url));
+	}
 
   Promise.all(arr)
     .then(async (data) => {
